@@ -121,5 +121,5 @@ console.log("Todos los productos:", productManager.getProducts());
 
 console.log("Producto por ID (código 2):", productManager.getProductById(2));
 console.log("Producto por ID (código 3):", productManager.getProductById(3));
-console.log("Producto por ID (código 4):", productManager.getProductById(4));
+console.log("Producto por ID (código 4):", productManager.getProductById(4)); //Test de error producto inexistente
 
