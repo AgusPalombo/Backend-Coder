@@ -1,18 +1,20 @@
-const fs = require('fs');
+const express = require('express');
+const fs = require('fs').promises;
 
 class ProductManager {
   constructor(filePath) {
     this.products = [];
-    this.nextId = 1; // Inicializamos el contador del ID en 1
-    this.path = filePath; // Ruta del archivo para persistencia
-    this.loadFromFile(); // Cargamos los datos desde el archivo al inicializar
+    this.nextId = 1;
+    this.path = filePath;
+    this.loadFromFile();
   }
 
-  addProduct(title, description, price, thumbnail, stock) {
-    if (!this.areAllFieldsValid(title, description, price, thumbnail, stock)) {
-      console.error("Error: Todos los campos del producto son obligatorios.");
-      return;
-    }
+  async addProduct(userInput) {
+    const { title, description, price, thumbnail, stock } = userInput;
+
+    // if (!this.areAllFieldsValid(title, description, price, thumbnail, stock)) {
+    //   throw new Error("Error: Todos los campos del producto son obligatorios.");
+    // }
 
     const product = {
       title,
@@ -20,90 +22,131 @@ class ProductManager {
       price,
       thumbnail,
       stock,
-      code: this.nextId++, // Asignamos el ID autoincrementable al producto
+      code: this.nextId++,
     };
 
     this.products.push(product);
-    this.saveToFile(); // Guardamos los datos actualizados en el archivo
+    await this.saveToFile();
     console.log("Producto agregado correctamente.");
   }
 
-  updateProduct(id, field, value) {
+  async updateProduct(id, field, value) {
     const product = this.products.find(p => p.code === id);
+
     if (!product) {
-      console.error(`Error: Producto con código ${id} no encontrado.`);
-      return;
+      throw new Error(`Error: Producto con código ${id} no encontrado.`);
     }
 
     if (!(field in product)) {
-      console.error(`Error: El campo "${field}" no es válido.`);
-      return;
+      throw new Error(`Error: El campo "${field}" no es válido.`);
     }
 
     product[field] = value;
-    this.saveToFile(); // Guardamos los datos actualizados en el archivo
+    await this.saveToFile();
     console.log(`Producto con código ${id} actualizado correctamente.`);
   }
 
-  deleteProduct(id) {
+  async deleteProduct(id) {
     const index = this.products.findIndex(p => p.code === id);
+
     if (index === -1) {
-      console.error(`Error: Producto con código ${id} no encontrado.`);
-      return;
+      throw new Error(`Error: Producto con código ${id} no encontrado.`);
     }
 
     this.products.splice(index, 1);
-    this.saveToFile(); // Guardamos los datos actualizados en el archivo
+    await this.saveToFile();
     console.log(`Producto con código ${id} eliminado correctamente.`);
   }
 
-  getProducts() {
-    return this.products;
-  }
-
-  getProductById(id) {
-    const product = this.products.find(p => p.code === id); // "p" refiere al producto que esta siendo utilizado o que ha sido seleccionado por ID
-    if (!product) {
-      console.error(`Error: Producto con código ${id} no encontrado.`);
-    }
-    return product;
-  }
-
-  areAllFieldsValid(title, description, price, thumbnail, stock) {
-    return (
-      title !== undefined &&
-      description !== undefined &&
-      price !== undefined &&
-      thumbnail !== undefined &&
-      stock !== undefined
-    );
-  }
-
-  loadFromFile() {
+  async loadFromFile() {
     try {
-      const data = fs.readFileSync(this.path, 'utf-8');
+      const data = await fs.readFile(this.path, 'utf-8');
       this.products = JSON.parse(data);
-      // Obtenemos el último ID asignado para continuar la secuencia
       this.nextId = Math.max(...this.products.map(p => p.code)) + 1;
     } catch (error) {
-      // Si ocurre un error (archivo no existe o está vacío), continuamos con el contador en 1
       this.nextId = 1;
     }
   }
 
-  saveToFile() {
+  async saveToFile() {
     try {
       const data = JSON.stringify(this.products, null, 2);
-      fs.writeFileSync(this.path, data, 'utf-8');
+      await fs.writeFile(this.path, data, 'utf-8');
     } catch (error) {
       console.error("Error al guardar los datos en el archivo.");
     }
   }
+
+  async getProducts(limit) {
+    try {
+      const data = await fs.readFile(this.path, 'utf-8');
+      const products = JSON.parse(data);
+
+      if (limit) {
+        return products.slice(0, parseInt(limit));
+      } else {
+        return products;
+      }
+    } catch (error) {
+      console.error('Error al leer el archivo products.json:', error);
+      throw new Error('Error interno del servidor');
+    }
+  }
+
+  async getProductById(id) {
+    try {
+      const data = await fs.readFile(this.path, 'utf-8');
+      const products = JSON.parse(data);
+      const product = products.find(p => p.code === id);
+
+      if (product) {
+        return product;
+      } else {
+        throw new Error('Producto no encontrado');
+      }
+    } catch (error) {
+      console.error('Error al leer el archivo products.json:', error);
+      throw new Error('Error interno del servidor');
+    }
+  }
+
+  async startServer(port) {
+    const app = express();
+
+    app.get('/products', async (req, res) => {
+      const { limit } = req.query;
+
+      try {
+        const products = await this.getProducts(limit);
+        res.json(products);
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+    });
+
+    app.get('/products/:pid', async (req, res) => {
+      const productId = parseInt(req.params.pid);
+
+      try {
+        const product = await this.getProductById(productId);
+        res.json(product);
+      } catch (error) {
+        res.status(404).send(error.message);
+      }
+    });
+
+    app.listen(port, () => {
+      console.log(`Servidor en línea en http://localhost:${port}`);
+    });
+  }
 }
 
 // Ejemplo de uso:
-const filePath = './products.json'; // Ruta del archivo para persistencia
+const filePath = '/products.json';
 const productManager = new ProductManager(filePath);
+
+productManager.startServer(3000);
+
 
 productManager.addProduct("Producto 1", "Descripción del Producto 1", 50.0, "thumbnail1.jpg", 10);
 productManager.addProduct("Producto 2", "Descripción del Producto 2", 30.0, "thumbnail2.jpg", 5);
