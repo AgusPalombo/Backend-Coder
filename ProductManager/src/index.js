@@ -6,6 +6,7 @@ app.use(express.json());
 
 const manager = new ProductManager();
 
+
 app.get('/productos', async (req, res) => {
     try {
         await manager.cargarProductosDesdeArchivo('productos.json');

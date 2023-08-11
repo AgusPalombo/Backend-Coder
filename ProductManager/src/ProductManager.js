@@ -1,6 +1,8 @@
 const fs = require('fs/promises');
 const Product = require('./Product');
 
+
+
 class ProductManager {
     constructor() {
         this.products = [];
@@ -10,18 +12,25 @@ class ProductManager {
         try {
             const data = await fs.readFile(filename, 'utf-8');
             const products = JSON.parse(data);
-            this.products = products.map(productData => new Product(
-                productData.name,
-                productData.price,
-                productData.thumbnail,
-                productData.description,
-                productData.stock
-            ));
-            console.log("Productos cargados desde el archivo:", filename);
+    
+            if (products.length === 0) {
+                console.log("No hay productos en el archivo. Inicializando...");
+                this.products = [];
+            } else {
+                this.products = products.map(productData => new Product(
+                    productData.name,
+                    productData.price,
+                    productData.thumbnail,
+                    productData.description,
+                    productData.stock
+                ));
+                console.log("Productos cargados desde el archivo:", filename);
+            }
         } catch (error) {
             console.error("Error al cargar productos desde el archivo:", error.message);
         }
     }
+    
 
     async guardarProductosEnArchivo(filename) {
         const data = JSON.stringify(this.products, null, 2);
@@ -80,6 +89,7 @@ class ProductManager {
         }
     }
 }
+
 
 module.exports = ProductManager;
 
