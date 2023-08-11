@@ -8,3 +8,5 @@ Error: Error interno del servidor
     at ProductManager.getProductById (D:\GitHub\Backend-Coder\ProductManager\manager.js:109:13)
 
 Node.js v20.4.0
+
+CREO QUE EL SERVIDOR NO LOGRA GUARDAR, LEER NI CREAR/ACTUALIZAR NUEVOS PRODUCTOS O EXISTENTES
