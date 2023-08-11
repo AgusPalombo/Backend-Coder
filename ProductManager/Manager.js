@@ -82,7 +82,7 @@ class ProductManager {
       const data = await fs.readFile(this.path, 'utf-8');
       const products = JSON.parse(data);
 
-      if (limit) {
+      if (limit && !isNaN(limit)) {
         return products.slice(0, parseInt(limit));
       } else {
         return products;

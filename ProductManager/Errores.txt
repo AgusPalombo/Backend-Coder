@@ -1,0 +1,10 @@
+Error al leer el archivo products.json: Error: Producto no encontrado
+    at ProductManager.getProductById (D:\GitHub\Backend-Coder\ProductManager\manager.js:105:15)
+D:\GitHub\Backend-Coder\ProductManager\manager.js:109
+      throw new Error('Error interno del servidor');
+            ^
+
+Error: Error interno del servidor
+    at ProductManager.getProductById (D:\GitHub\Backend-Coder\ProductManager\manager.js:109:13)
+
+Node.js v20.4.0
