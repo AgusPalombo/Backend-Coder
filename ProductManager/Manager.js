@@ -53,7 +53,7 @@ class ProductManager {
       throw new Error(`Error: Producto con código ${id} no encontrado.`);
     }
 
-    this.products.splice(index, 1);
+    this.products.slice(index, 1);
     await this.saveToFile();
     console.log(`Producto con código ${id} eliminado correctamente.`);
   }
@@ -124,7 +124,7 @@ class ProductManager {
       }
     });
 
-    app.get('/products/:pid', async (req, res) => {
+    app.get('/products/:id', async (req, res) => {
       const productId = parseInt(req.params.pid);
 
       try {
@@ -158,6 +158,7 @@ productManager.updateProduct(2, "price", 40.0);
 productManager.updateProduct(3, "stock", 20);
 
 console.log("Producto por ID (código 1):", productManager.getProductById(1));
+
 productManager.deleteProduct(1);
 
 console.log("Todos los productos:", productManager.getProducts());
