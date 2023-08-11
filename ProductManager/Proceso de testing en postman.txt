@@ -1,0 +1,63 @@
+Inicializar los Productos
+
+Abre Postman.
+
+Crea una nueva solicitud y selecciona el método POST.
+
+Ingresa la URL: http://localhost:3000/productos
+
+Haz clic en "Enviar" para realizar la solicitud.
+Deberías recibir una respuesta con un mensaje que indica que los productos se han inicializado exitosamente.
+
+
+----------------------------------------------------------------------------
+Agregar un Producto
+
+Crea una nueva solicitud y selecciona el método POST.
+Ingresa la URL: http://localhost:3000/productos.
+Ve a la pestaña "Cuerpo" y selecciona "raw". Luego, elige "JSON (application/json)".
+Ingresa el siguiente JSON en el campo de texto:
+json
+Copy code
+{
+  "name": "Nuevo Producto",
+  "price": 19.99,
+  "thumbnail": "url-de-la-imagen",
+  "description": "Descripción del producto",
+  "stock": 10
+}
+Haz clic en "Enviar" para realizar la solicitud.
+Deberías recibir una respuesta con un mensaje que indica que el producto se ha agregado exitosamente.
+
+--------------------------------------------------------------------------
+
+Actualizar un Producto
+
+Crea una nueva solicitud y selecciona el método PUT.
+Ingresa la URL: http://localhost:3000/productos/1 (donde 1 es el ID del producto que deseas actualizar).
+Ve a la pestaña "Cuerpo" y selecciona "raw". Luego, elige "JSON (application/json)".
+Ingresa el siguiente JSON en el campo de texto (puedes ajustar los valores según tus necesidades):
+json
+Copy code
+{
+  "name": "Producto Actualizado",
+  "price": 24.99,
+  "thumbnail": "nueva-url-de-imagen",
+  "description": "Descripción actualizada",
+  "stock": 15
+}
+Haz clic en "Enviar" para realizar la solicitud.
+Deberías recibir una respuesta con un mensaje que indica que el producto se ha actualizado exitosamente.
+
+--------------------------------------------------------------------------
+
+Eliminar un Producto
+
+Crea una nueva solicitud y selecciona el método DELETE.
+Ingresa la URL: http://localhost:3000/productos/1 (donde 1 es el ID del producto que deseas eliminar).
+Haz clic en "Enviar" para realizar la solicitud.
+Deberías recibir una respuesta con un mensaje que indica que el producto se ha eliminado exitosamente.
+Obtener Lista de Productos
+
+Crea una nueva solicitud y selecciona el método GET.
+Ingresa la URL: http://localhost:3000/productos.
