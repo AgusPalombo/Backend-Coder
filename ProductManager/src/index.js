@@ -10,7 +10,17 @@ const manager = new ProductManager();
 app.get('/productos', async (req, res) => {
     try {
         await manager.cargarProductosDesdeArchivo('productos.json');
-        res.json(manager.products);
+    // Obtener el valor del parámetro de consulta "limit"
+        const limit = parseInt(req.query.limit);
+
+        if (!isNaN(limit)) {
+            // Si el valor es un número válido, mostrar solo los primeros productos según el límite
+            const limitedProducts = manager.products.slice(0, limit);
+            res.json(limitedProducts);
+        } else {
+            // Si el valor no es válido o no se proporciona, mostrar todos los productos
+            res.json(manager.products);
+        }
     } catch (error) {
         res.status(500).json({ error: 'Error al cargar productos' });
     }

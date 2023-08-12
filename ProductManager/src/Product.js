@@ -1,7 +1,6 @@
-// Product.js objeto producto creacion del mismo
 class Product {
     constructor(name, price, thumbnail, description, stock) {
-        this.id = Product.generateId();
+        this.id = Product.getNextId(); // Genera un ID único
         this.name = name;
         this.price = price;
         this.thumbnail = thumbnail;
@@ -9,11 +8,16 @@ class Product {
         this.stock = stock;
     }
 
-    static currentId = 1;
+     
 
-    static generateId() {
-        return Product.currentId++;
+    // Generar el siguiente ID único usando el contador nextId
+    static getNextId() {
+        return Product.nextId++; // Incrementa nextId y devuelve el valor anterior
     }
 }
+
+// Inicializa el contador nextId en 1
+Product.nextId = 1;
+
 
 module.exports = Product;

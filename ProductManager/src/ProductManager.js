@@ -53,9 +53,16 @@ class ProductManager {
         if (index !== -1) {
             const removedProduct = this.products.splice(index, 1)[0];
             console.log("Producto eliminado:", removedProduct.name);
+            this.reorganizarIDs(); // Llama a la función para reorganizar los IDs
         } else {
             console.log("Producto no encontrado con ID:", product_id);
         }
+    }
+
+    reorganizarIDs() {
+        this.products.forEach((product, index) => {
+            product.id = index + 1; // Asigna IDs en orden secuencial
+        });
     }
 
     async actualizarProducto(product_id, new_name, new_price, new_thumbnail, new_description, new_stock) {
@@ -89,6 +96,7 @@ class ProductManager {
         }
     }
 }
+
 
 
 module.exports = ProductManager;
