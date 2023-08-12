@@ -1,5 +1,5 @@
 const express = require('express');
-const ProductManager = require('./ProductManager');
+const ProductManager = require('./src/ProductManager');
 
 const app = express();
 app.use(express.json());
