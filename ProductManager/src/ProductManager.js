@@ -46,7 +46,6 @@ class ProductManager {
         const product = new Product(name, price, thumbnail, description, stock);
         this.products.push(product);
         console.log("Producto agregado:", product.name);
-        this.reorganizarIDs();
     }
 
     async eliminarProductoPorID(product_id) {

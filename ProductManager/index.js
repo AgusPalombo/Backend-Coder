@@ -29,7 +29,13 @@ app.get('/productos', async (req, res) => {
 app.post('/productos', async (req, res) => {
     const { name, price, thumbnail, description, stock } = req.body;
     try {
-        await manager.agregarProducto(name, price, thumbnail, description, stock);
+        // Cargar productos existentes desde el archivo
+        await manager.cargarProductosDesdeArchivo('productos.json');
+
+        // Agregar el nuevo producto a la lista de productos
+        manager.agregarProducto(nuevoProducto);
+
+        // Guardar todos los productos en el archivo nuevamente
         await manager.guardarProductosEnArchivo('productos.json');
         res.json({ message: 'Producto agregado exitosamente' });
     } catch (error) {
