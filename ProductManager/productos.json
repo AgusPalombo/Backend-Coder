@@ -1,18 +1,18 @@
 [
   {
     "id": 1,
-    "name": "Laptop HP",
-    "price": 799.99,
-    "thumbnail": "https://example.com/laptop-hp.jpg",
-    "description": "Potente laptop HP con procesador Intel Core i7 y 16GB de RAM.",
-    "stock": 10
+    "name": "Laptop Huawei",
+    "price": 699.99,
+    "thumbnail": "https://example.com/laptop-huawei.jpg",
+    "description": "Potente laptop Huawei con procesador Intel Core i9 y 32GB de RAM.",
+    "stock": 5
   },
   {
     "id": 2,
     "name": "Smartphone Samsung",
     "price": 499.99,
     "thumbnail": "https://example.com/smartphone-samsung.jpg",
-    "description": "Último smartphone Samsung con pantalla AMOLED y cámara de alta resolución.",
+    "description": "Ultimo smartphone Samsung con pantalla AMOLED y camara de alta resolucion.",
     "stock": 15
   },
   {
@@ -20,7 +20,7 @@
     "name": "Televisor LG",
     "price": 899.99,
     "thumbnail": "https://example.com/televisor-lg.jpg",
-    "description": "Televisor LG 4K con tecnología HDR y pantalla de 55 pulgadas.",
+    "description": "Televisor LG 4K con tecnologia HDR y pantalla de 55 pulgadas.",
     "stock": 8
   },
   {
@@ -28,15 +28,23 @@
     "name": "Auriculares Sony",
     "price": 149.99,
     "thumbnail": "https://example.com/auriculares-sony.jpg",
-    "description": "Auriculares inalámbricos Sony con cancelación de ruido y batería de larga duración.",
+    "description": "Auriculares inalambricos Sony con cancelacion de ruido y bateria de larga duracion.",
     "stock": 20
   },
   {
     "id": 5,
-    "name": "Cámara Canon",
+    "name": "Camara Canon",
     "price": 599.99,
     "thumbnail": "https://example.com/camara-canon.jpg",
-    "description": "Cámara réflex digital Canon con sensor de alta resolución y grabación de video Full HD.",
+    "description": "Camara reflex digital Canon con sensor de alta resolucion y grabacion de video Full HD.",
     "stock": 12
+  },
+  {
+    "id": 6,
+    "name": "Laptop HP",
+    "price": 899.99,
+    "thumbnail": "https://example.com/laptop-hp.jpg",
+    "description": "Potente laptop HP con procesador Intel Core i7 y 16GB de RAM.",
+    "stock": 10
   }
 ]
