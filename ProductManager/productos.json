@@ -1,50 +1,24 @@
 [
   {
     "id": 1,
-    "name": "Laptop Huawei",
-    "price": 699.99,
-    "thumbnail": "https://example.com/laptop-huawei.jpg",
-    "description": "Potente laptop Huawei con procesador Intel Core i9 y 32GB de RAM.",
-    "stock": 5
+    "title": "Producto 1",
+    "description": "Descripción del producto 1",
+    "code": "PROD001",
+    "price": 10.99,
+    "status": true,
+    "stock": 50,
+    "category": "Categoría 1",
+    "thumbnails": ["thumbnail1.jpg"]
   },
   {
     "id": 2,
-    "name": "Smartphone Samsung",
-    "price": 499.99,
-    "thumbnail": "https://example.com/smartphone-samsung.jpg",
-    "description": "Ultimo smartphone Samsung con pantalla AMOLED y camara de alta resolucion.",
-    "stock": 15
-  },
-  {
-    "id": 3,
-    "name": "Televisor LG",
-    "price": 899.99,
-    "thumbnail": "https://example.com/televisor-lg.jpg",
-    "description": "Televisor LG 4K con tecnologia HDR y pantalla de 55 pulgadas.",
-    "stock": 8
-  },
-  {
-    "id": 4,
-    "name": "Auriculares Sony",
-    "price": 149.99,
-    "thumbnail": "https://example.com/auriculares-sony.jpg",
-    "description": "Auriculares inalambricos Sony con cancelacion de ruido y bateria de larga duracion.",
-    "stock": 20
-  },
-  {
-    "id": 5,
-    "name": "Camara Canon",
-    "price": 599.99,
-    "thumbnail": "https://example.com/camara-canon.jpg",
-    "description": "Camara reflex digital Canon con sensor de alta resolucion y grabacion de video Full HD.",
-    "stock": 12
-  },
-  {
-    "id": 6,
-    "name": "Laptop HP",
-    "price": 899.99,
-    "thumbnail": "https://example.com/laptop-hp.jpg",
-    "description": "Potente laptop HP con procesador Intel Core i7 y 16GB de RAM.",
-    "stock": 10
+    "title": "Producto 2",
+    "description": "Descripción del producto 2",
+    "code": "PROD002",
+    "price": 20.99,
+    "status": true,
+    "stock": 30,
+    "category": "Categoría 2",
+    "thumbnails": ["thumbnail2.jpg"]
   }
 ]

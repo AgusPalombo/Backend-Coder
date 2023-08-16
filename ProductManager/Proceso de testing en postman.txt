@@ -1,63 +1,48 @@
-Inicializar los Productos
+Obtener todos los productos (GET):
 
-Abre Postman.
+URL: http://localhost:8080/products
+Método: GET
+Obtener un producto por su ID (GET):
 
-Crea una nueva solicitud y selecciona el método POST.
+URL: http://localhost:8080/products/1
+Método: GET
+Agregar un nuevo producto (POST):
 
-Ingresa la URL: http://localhost:3000/productos
+URL: http://localhost:8080/products
+Método: POST
 
-Haz clic en "Enviar" para realizar la solicitud.
-Deberías recibir una respuesta con un mensaje que indica que los productos se han inicializado exitosamente.
+{
+  "title": "Nuevo Producto",
+  "description": "Descripción del nuevo producto",
+  "code": "NEW001",
+  "price": 15.99,
+  "stock": 10,
+  "category": "Categoría Nueva",
+  "thumbnails": ["new_thumbnail.jpg"]
+}
 
+Actualizar un producto por su ID (PUT):
 
-----------------------------------------------------------------------------
-Agregar un Producto
-
-Crea una nueva solicitud y selecciona el método POST.
-Ingresa la URL: http://localhost:3000/productos.
-Ve a la pestaña "Cuerpo" y selecciona "raw". Luego, elige "JSON (application/json)".
-Ingresa el siguiente JSON en el campo de texto:
+URL: http://localhost:8080/products/2
+Método: PUT
+Cuerpo (JSON):
 json
 Copy code
 {
-  "name": "Nuevo Producto",
-  "price": 19.99,
-  "thumbnail": "url-de-la-imagen",
-  "description": "Descripción del producto",
-  "stock": 10
+  "title": "Producto 2 Actualizado",
+  "price": 25.99
 }
-Haz clic en "Enviar" para realizar la solicitud.
-Deberías recibir una respuesta con un mensaje que indica que el producto se ha agregado exitosamente.
 
---------------------------------------------------------------------------
 
-Actualizar un Producto
+Crear un nuevo carrito (POST):
 
-Crea una nueva solicitud y selecciona el método PUT.
-Ingresa la URL: http://localhost:3000/productos/1 (donde 1 es el ID del producto que deseas actualizar).
-Ve a la pestaña "Cuerpo" y selecciona "raw". Luego, elige "JSON (application/json)".
-Ingresa el siguiente JSON en el campo de texto (puedes ajustar los valores según tus necesidades):
-json
-Copy code
-{
-  "name": "Producto Actualizado",
-  "price": 24.99,
-  "thumbnail": "nueva-url-de-imagen",
-  "description": "Descripción actualizada",
-  "stock": 15
-}
-Haz clic en "Enviar" para realizar la solicitud.
-Deberías recibir una respuesta con un mensaje que indica que el producto se ha actualizado exitosamente.
+URL: http://localhost:8080/carts
+Método: POST
+Agregar un producto a un carrito (POST):
 
---------------------------------------------------------------------------
+URL: http://localhost:8080/carts/1/product/1
+Método: POST
+Obtener los productos de un carrito por su ID (GET):
 
-Eliminar un Producto
-
-Crea una nueva solicitud y selecciona el método DELETE.
-Ingresa la URL: http://localhost:3000/productos/1 (donde 1 es el ID del producto que deseas eliminar).
-Haz clic en "Enviar" para realizar la solicitud.
-Deberías recibir una respuesta con un mensaje que indica que el producto se ha eliminado exitosamente.
-Obtener Lista de Productos
-
-Crea una nueva solicitud y selecciona el método GET.
-Ingresa la URL: http://localhost:3000/productos.
+URL: http://localhost:8080/carts/1
+Método: GET
