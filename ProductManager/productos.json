@@ -8,17 +8,21 @@
     "status": true,
     "stock": 50,
     "category": "Categoría 1",
-    "thumbnails": ["thumbnail1.jpg"]
+    "thumbnails": [
+      "thumbnail1.jpg"
+    ]
   },
   {
     "id": 2,
-    "title": "Producto 2",
+    "title": "Producto 2 Actualizado",
     "description": "Descripción del producto 2",
     "code": "PROD002",
-    "price": 20.99,
+    "price": 25.99,
     "status": true,
     "stock": 30,
     "category": "Categoría 2",
-    "thumbnails": ["thumbnail2.jpg"]
+    "thumbnails": [
+      "thumbnail2.jpg"
+    ]
   }
 ]

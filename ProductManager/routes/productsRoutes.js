@@ -5,6 +5,9 @@ const router = express.Router();
 const PRODUCTS_FILE = './productos.json';
 
 function readProductsFile() {
+  if (!fs.existsSync(PRODUCTS_FILE)) {
+    fs.writeFileSync(PRODUCTS_FILE, '[]', 'utf8');
+  }
   const data = fs.readFileSync(PRODUCTS_FILE, 'utf8');
   return JSON.parse(data);
 }
@@ -12,7 +15,6 @@ function readProductsFile() {
 function writeProductsFile(products) {
   fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2), 'utf8');
 }
-
 router.get('/', (req, res) => {
   const products = readProductsFile();
   res.json(products);
@@ -49,6 +51,21 @@ router.put('/:pid', (req, res) => {
     products[index] = { ...products[index], ...updatedProduct };
     writeProductsFile(products);
     res.json(products[index]);
+  } else {
+    res.status(404).json({ message: 'Producto no encontrado' });
+  }
+});
+
+
+router.delete('/:pid', (req, res) => {
+  const products = readProductsFile();
+  const productId = parseInt(req.params.pid);
+
+  const index = products.findIndex(prod => prod.id === productId);
+  if (index !== -1) {
+    products.splice(index, 1);
+    writeProductsFile(products);
+    res.status(200).json({ message: 'Producto eliminado' });
   } else {
     res.status(404).json({ message: 'Producto no encontrado' });
   }

@@ -25,9 +25,8 @@ Actualizar un producto por su ID (PUT):
 
 URL: http://localhost:8080/products/2
 Método: PUT
-Cuerpo (JSON):
-json
-Copy code
+
+
 {
   "title": "Producto 2 Actualizado",
   "price": 25.99
@@ -38,6 +37,7 @@ Crear un nuevo carrito (POST):
 
 URL: http://localhost:8080/carts
 Método: POST
+
 Agregar un producto a un carrito (POST):
 
 URL: http://localhost:8080/carts/1/product/1
