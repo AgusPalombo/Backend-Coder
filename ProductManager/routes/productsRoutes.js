@@ -65,6 +65,12 @@ router.delete('/:pid', (req, res) => { // Ruta para eliminar un producto por su 
   const index = products.findIndex(prod => prod.id === productId);
   if (index !== -1) {
     products.splice(index, 1);
+
+// Reordenamos los IDs después de eliminar un producto
+  for (let i = index; i < products.length; i++) {
+    products[i].id = i + 1;
+  }  
+
     writeProductsFile(products);
     res.status(200).json({ message: 'Producto eliminado' });
   } else {

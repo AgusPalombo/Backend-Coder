@@ -1,28 +1,26 @@
 [
   {
-    "id": 1,
-    "title": "Producto 1",
-    "description": "Descripción del producto 1",
-    "code": "PROD001",
-    "price": 10.99,
-    "status": true,
-    "stock": 50,
-    "category": "Categoría 1",
+    "title": "Nuevo Producto",
+    "description": "Descripción del nuevo producto",
+    "code": "NEW001",
+    "price": 15.99,
+    "stock": 10,
+    "category": "Categoría Nueva",
     "thumbnails": [
-      "thumbnail1.jpg"
-    ]
+      "new_thumbnail.jpg"
+    ],
+    "id": 1
   },
   {
-    "id": 2,
-    "title": "Producto 2 Actualizado",
-    "description": "Descripción del producto 2",
-    "code": "PROD002",
-    "price": 25.99,
-    "status": true,
-    "stock": 30,
-    "category": "Categoría 2",
+    "title": "Nuevo Producto2",
+    "description": "Descripción del nuevo producto",
+    "code": "NEW002",
+    "price": 16.99,
+    "stock": 11,
+    "category": "Categoría Nueva",
     "thumbnails": [
-      "thumbnail2.jpg"
-    ]
+      "new_thumbnail.jpg"
+    ],
+    "id": 2
   }
 ]
