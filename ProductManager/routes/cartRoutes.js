@@ -2,9 +2,10 @@ const express = require('express');
 const fs = require('fs');
 const router = express.Router();
 
-const CARTS_FILE = './carts.json';
+const CARTS_FILE = './carts.json'; // Ruta al archivo JSON de carritos
 
-function readCartsFile() {
+function readCartsFile() {  // Función para leer el archivo de carritos
+
   if (!fs.existsSync(CARTS_FILE)) {
     fs.writeFileSync(CARTS_FILE, '[]', 'utf8');
   }
@@ -12,11 +13,11 @@ function readCartsFile() {
   return JSON.parse(data);
 }
 
-function writeCartsFile(carts) {
+function writeCartsFile(carts) { // Función para escribir en el archivo de carritos
   fs.writeFileSync(CARTS_FILE, JSON.stringify(carts, null, 2), 'utf8');
 }
 
-router.post('/', (req, res) => {
+router.post('/', (req, res) => { // Ruta para crear un nuevo carrito
   const newCart = { id: Date.now(), products: [] };
   const carts = readCartsFile();
   carts.push(newCart);
@@ -24,7 +25,7 @@ router.post('/', (req, res) => {
   res.status(201).json(newCart);
 });
 
-router.post('/:cid/product/:pid', (req, res) => {
+router.post('/:cid/product/:pid', (req, res) => { // Ruta para agregar un producto a un carrito
   const cartId = parseInt(req.params.cid);
   const productId = parseInt(req.params.pid);
 
@@ -47,7 +48,7 @@ router.post('/:cid/product/:pid', (req, res) => {
   res.status(200).json(cart);
 });
 
-router.get('/:cid', (req, res) => {
+router.get('/:cid', (req, res) => { // Ruta para obtener productos de un carrito por su ID
   const cartId = parseInt(req.params.cid);
   const carts = readCartsFile();
   const cart = carts.find(cart => cart.id === cartId);

@@ -2,9 +2,9 @@ const express = require('express');
 const fs = require('fs');
 const router = express.Router();
 
-const PRODUCTS_FILE = './productos.json';
+const PRODUCTS_FILE = './productos.json'; // Ruta al archivo JSON de productos
 
-function readProductsFile() {
+function readProductsFile() { // Función para leer el archivo de productos
   if (!fs.existsSync(PRODUCTS_FILE)) {
     fs.writeFileSync(PRODUCTS_FILE, '[]', 'utf8');
   }
@@ -12,15 +12,16 @@ function readProductsFile() {
   return JSON.parse(data);
 }
 
-function writeProductsFile(products) {
+function writeProductsFile(products) { // Función para escribir en el archivo de productos
   fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2), 'utf8');
 }
-router.get('/', (req, res) => {
+router.get('/', (req, res) => { // Ruta para obtener productos con límite opcional
   const products = readProductsFile();
   res.json(products);
 });
 
-router.get('/:pid', (req, res) => {
+router.get('/:pid', (req, res) => { // Ruta para obtener un producto por su ID
+
   const products = readProductsFile();
   const productId = parseInt(req.params.pid);
   const product = products.find(prod => prod.id === productId);
@@ -32,7 +33,7 @@ router.get('/:pid', (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res) => { // Ruta para agregar un nuevo producto
   const products = readProductsFile();
   const newProduct = req.body;
   newProduct.id = products.length + 1;
@@ -41,7 +42,7 @@ router.post('/', (req, res) => {
   res.status(201).json(newProduct);
 });
 
-router.put('/:pid', (req, res) => {
+router.put('/:pid', (req, res) => { // Ruta para actualizar un producto por su ID
   const products = readProductsFile();
   const productId = parseInt(req.params.pid);
   const updatedProduct = req.body;
@@ -57,7 +58,7 @@ router.put('/:pid', (req, res) => {
 });
 
 
-router.delete('/:pid', (req, res) => {
+router.delete('/:pid', (req, res) => { // Ruta para eliminar un producto por su ID
   const products = readProductsFile();
   const productId = parseInt(req.params.pid);
 
