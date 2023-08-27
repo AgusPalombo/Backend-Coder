@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Productos</title>
+</head>
+<body>
+  <h1>Lista de Productos</h1>
+  <ul>
+    {{#each products}}
+    <li>
+      <h2>{{this.title}}</h2>
+      <p>{{this.description}}</p>
+      <p>Precio: ${{this.price}}</p>
+      <!-- Puedes mostrar otros atributos aquí -->
+    </li>
+    {{/each}}
+  </ul>
+
+  <!-- Agrega un botón para redireccionar a la vista realTimeProducts -->
+  <a href="/products/realtimeproducts">Ir a Real Time Products</a>
+</body>
+</html>
