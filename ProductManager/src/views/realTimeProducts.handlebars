@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="public/style.css">
+  <title>Real-Time Products</title>
+</head>
+<body>
+  <h1>Real-Time Products</h1>
+  <div>
+    <h2>Crear Producto</h2>
+    <form id="crearProductoForm">
+      <label for="title">Título:</label>
+      <input type="text" id="title" required>
+      <label for="description">Descripción:</label>
+      <textarea id="description" required></textarea>
+      <label for="price">Precio:</label>
+      <input type="number" step="0.01" id="price" required>
+      <label for="thumbnail">Thumbnail URL:</label>
+      <input type="text" id="thumbnail" required>
+      <label for="stock">Stock:</label>
+      <input type="number" id="stock" required>
+      <button type="submit">Crear Producto</button>
+    </form>
+  </div>
+  <div>
+    <h2>Lista de Productos</h2>
+    <ul id="productos">
+      {{#each products}}
+        <li>
+          <h3>{{this.title}}</h3>
+          <p>{{this.description}}</p>
+          <p>Precio: ${{this.price}}</p>
+          <p>Thumbnail: <img src="{{this.thumbnail}}" alt="Thumbnail"></p>
+          <p>Stock: {{this.stock}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>
