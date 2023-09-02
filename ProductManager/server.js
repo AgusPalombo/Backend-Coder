@@ -12,6 +12,7 @@ const io = socketIO(server);
 
 
 // Configura el motor de plantillas Handlebars
+
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
