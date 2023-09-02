@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 const exphbs = require('express-handlebars');
+const hdbl = require('handlebars')
 const path = require('path');
 const manager = require('./manager'); // Importamos el archivo manager.js
 
